@@ -1,29 +1,124 @@
-# これは何？
-社員研修用に利用する、freemarket_sampleのフロントのみ実装したものです。
+## usersテーブル
 
-# どうやって使うの？
+|Column|Type|Options|
+|------|----|-------|
+|nickname|string|
+|email|string|null: false, unique: true|
+|first_name_kanji|string|null: false|
+|last_name_kanji|string|null: false|
+|first_name_kana|string|null: false|
+|last_name_kana|string|null: false|
+|birth_day|interger|null: false|
+|telephone|interger|
+|postal_code|interger|null: false|
+|prefectures|string|null: false|
+|city|string|null: false|
+|address|interger|null: false|
+|building|string|
+|profic|string|
+|icon|string|
+|encrypted_password|string|null: false, default: ""|
+|reset_password_token|string|unique: true|
+|reset_password_sent_at|datetime|
+|remember_created_at|datetime|
+|created_at|datetime|
+|updated_at|datetime|
 
-## 1. Githubからダウンロードする
-上の方にボタンがあるので、ダウンロードしてください。クローンしないのは、誤ってプッシュしてこのリポジトリが変更されることを防ぐためです。
+### Association
+- has_many :items
+- has_many :buy_items
+- has_many :sell_items
+- belongs_to :cord
 
-## 2. 自分のPC上でダウンロードして来たzipを解凍
-ここで、Rubyのバージョンを2.5.1に変更してください。なければrbenvを利用して2.5.1をインストールしてください。
-また、`bundle install`もしておきましょう。
+## catagoriesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, index: true|
+|parent_id|interger|
 
-## 3. データベースの準備
-以下のコマンドで、データベースを準備します。この時、database.ymlを編集してデータベースの名前を変更しても構いません。
+### Association
+- has_many :items
 
-rails db:create
-rails db:migrate
+## brandsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, index: true|
 
-この時DB名は各々決めて良い事とする
+### Association
+- has_many :items
 
-## 4.ユーザー作成
-users/sign_up にアクセスし、一人ユーザーを作成してください。
 
-## 5.閲覧できるページの確認
-以下のページにアクセス可能です。一度確認してください。
-* top(/)
-* user:show(/users/1)
-* product:show(/products/1)
-* product:new(/products/new)
+## itemsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, index: true|
+|price|interger|null: false|
+|detail|text|null: false|
+|size|string|null: false|
+|condition|string|null: false|
+|shipping_burden|interger|null: false|
+|shipping_way|string|null: false|
+|shipping_place|string|null: false|
+|shipping_day|interger|null: false|
+|status|interger|null: false|
+|catagory_id|references|null: false, foreign_key: true|
+|brand_id|references|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
+
+### Association
+- has_many :images
+- belongs_to :user
+- belongs_to :category
+- belongs_to :brand
+- belongs_to :buy_items
+- belongs_to :sell_items
+
+## cordsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|customer_id|string|
+|user_id|references|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
+
+## sns_credentialsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|provider|string|null: false|
+|uid|string|null: false|
+|user_id|references|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
+
+## imagesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|image|string|null: false|
+|item_id|references|null: false, foreign_key: true|
+
+### Association
+- belongs_to :item
+
+## buy-itemsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|item_id|references|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
+|status|string|null: false|
+
+### Association
+- belongs_to :item
+- belongs_to :user
+
+## sell-itemsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|item_id|references|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
+|status|string|null: false|
+
+### Association
+- belongs_to :item
+- belongs_to :user
