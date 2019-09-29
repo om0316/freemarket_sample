@@ -4,9 +4,23 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
   def change
     create_table :users do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :nickname,null: false
+      t.string :email,null: false, default: "", unique: true
+      t.string :first_name_kanji,null: false, default: ""
+      t.string :last_name_kanji,null: false, default: ""
+      t.string :first_name_kana,null: false, default: ""
+      t.string :last_name_kana,null: false, default: ""
+      t.integer :birth_day
+      t.integer :telephone
+      t.string :postal_code,null: false, default: ""
+      t.string :prefectures,null: false, default: ""
+      t.string :city,null: false, default: ""
+      t.string :address,null: false, default: ""
+      t.string :building,null: false, default: ""
+      t.string :profic
+      t.string :icon
 
+      t.string :encrypted_password, null: false, default: ""
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
@@ -20,7 +34,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.datetime :last_sign_in_at
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
-      t.string   :nickname
 
       ## Confirmable
       # t.string   :confirmation_token

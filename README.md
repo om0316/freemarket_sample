@@ -2,18 +2,18 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|nickname|string|
+|nickname|string|null: false
 |email|string|null: false, unique: true|
 |first_name_kanji|string|null: false|
 |last_name_kanji|string|null: false|
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
-|birth_day|interger|null: false|
+|birth_day|interger|
 |telephone|interger|
-|postal_code|interger|null: false|
+|postal_code|interger|
 |prefectures|string|null: false|
 |city|string|null: false|
-|address|interger|null: false|
+|address|string|null: false|
 |building|string|
 |profic|string|
 |icon|string|
@@ -55,7 +55,7 @@
 |price|interger|null: false|
 |detail|text|null: false|
 |size|string|null: false|
-|condition|string|null: false|
+|condition|interger|null: false|
 |shipping_burden|interger|null: false|
 |shipping_way|string|null: false|
 |shipping_place|string|null: false|
