@@ -14,19 +14,18 @@ var NowDate = Now.getDate();
 */
 function setSelectYear(){
 
-  var selectElement = document.getElementById("id_year");
   var y = 0;
   
   var option = document.createElement("option");
   option.value = "";
   option.text = "--";
-  selectElement.appendChild(option);
-  
-  for(y = NowYear; y >= NowYear-70; y--){
+  $('#id_year').append(option);
+
+  for(y = NowYear; y >= NowYear-50; y--){
       option = document.createElement("option");
       option.value = y;
       option.text = y;
-      selectElement.appendChild(option);
+      $('#id_year').append(option);
   }
   setSelectMonth();
 }
@@ -37,23 +36,18 @@ function setSelectYear(){
 function setSelectMonth(){
 
   var m = 0;
-  var selectElement = document.getElementById("id_month");
-  var child;
-
-  while(child = selectElement.firstChild){
-      selectElement.removeChild(child);
-  }
-
+  
   var option = document.createElement("option");
   option.value = "";
   option.text = "--";
-  selectElement.appendChild(option);
+  $('#id_month').append(option);
+
   //12ヶ月分
   for(m = 1; m <= 12; m++){
       option = document.createElement("option");
       option.value = m;
       option.text = m;
-      selectElement.appendChild(option);
+      $('#id_month').append(option);
   }
   setSelectDate();
 }
@@ -62,25 +56,28 @@ function setSelectMonth(){
 * 日のoptionを更新
 */
 function setSelectDate(){
-  
-  var selectElement = document.getElementById("id_day");
-  var child;
-
-   while(child = selectElement.firstChild){
-      selectElement.removeChild(child);
-   }
 
    var option = document.createElement("option");
    option.value = "";
    option.text = "--";
-   selectElement.appendChild(option);
+   $('#id_day').append(option);
 
    //1日から月の最終日まで
    for(d = 1; d <= 31; d++){
       option = document.createElement("option");
       option.value = d;
       option.text = d;
-      selectElement.appendChild(option);
+      $('#id_day').append(option);
    }
 
 }
+
+$(function() {
+  $(".birthdate").change(function(){
+    var year = $('#id_year option:selected').val();
+    var month = ('0' + $('#id_month option:selected').val()).slice(-2);
+    var day = ('0' + $('#id_day option:selected').val()).slice(-2);
+    $('#birth_hidden').val(year + month + day);
+  });
+});
+

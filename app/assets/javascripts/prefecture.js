@@ -51,9 +51,16 @@ window.addEventListener("load",function(){
   ];
  
   for(var i=0;i<arr.length;i++){
-    let op = document.createElement("option");
-    op.value = arr[i].cd;
-    op.text = arr[i].label;
-    document.getElementById("address-level").appendChild(op);
+    let option = document.createElement("option");
+    option.value = arr[i].cd;
+    option.text = arr[i].label;
+    $('#address-level').append(option);
   }
+});
+
+$(function() {
+  $(".address-level").change(function(){
+    var address = $('#address-level option:selected').val();
+    $('#prefecture_hidden').val(address);
+  });
 });
