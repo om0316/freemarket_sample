@@ -1,0 +1,15 @@
+.devise
+  = render "devise/shared/header"
+  .deviseSection
+    .inner
+      %h2.title 登録完了
+      .deviseForm
+        = form_tag(root_path, method: :get,class:'new_user') do 
+          .deviseForm__field
+            %p.check_message_p ありがとうございました。</br>会員登録が完了しました。
+          .deviseForm__actions
+            %input{type: "submit", value:"メルカリをはじめる", class: "deviseBtn"}
+        =render "devise/shared/footer"
+          
+
+         

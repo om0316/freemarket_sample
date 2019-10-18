@@ -146,3 +146,16 @@
   }
 }
 //end
+
+.name_set{
+  display:flex;
+}
+
+.name{
+  width: calc(100% - 32px);
+  margin: 8px 8px 0 0;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  font-size: 16px;
+  height: 28px;
+}

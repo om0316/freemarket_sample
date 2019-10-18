@@ -1,0 +1,37 @@
+.devise
+  = render "devise/shared/header"
+  .deviseSection
+    .inner
+      %h2.title 支払い方法
+      .deviseForm
+        = form_for @card, url: done_signup_index_path, method: :get, html: {class: 'new_user'} do |f|
+          .deviseForm__field
+            = f.label :カード番号
+            %span.formRequired 必須
+            %br/
+            = f.text_field :customer_id, autocomplete: "off", placeholder: "半角数字のみ", class: "inputField", required: true
+          .deviseForm__actions
+        
+          .deviseForm__field
+            = f.label :有効期限
+            %span.formRequired 必須
+            %br/
+            .birthdate.name_set
+              .birthdate__year.birthdate__box
+                %select#id_year{name:"year"}
+              .birthdate__font 年
+              .birthdate__month.birthdate__box
+                %select#id_month{name:"month"}
+              .birthdate__font 月
+            .deviseForm__actions
+
+            .deviseForm__field
+              = f.label :セキュリティコード
+              %span.formRequired 必須
+              %br/
+              //= f.text_field :customer_id, autocomplete: "off", placeholder: "カード背面4桁もしくは3桁の番号", class: "inputField", required: true
+              %input{autocomplete: "off", placeholder: "カード背面4桁もしくは3桁の番号", class: "inputField", required: true,type: "text"}/
+            .deviseForm__actions
+
+              = f.submit "次へ進む", class: "deviseBtn"
+        =render "devise/shared/footer"
