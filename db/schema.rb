@@ -24,10 +24,8 @@ ActiveRecord::Schema.define(version: 20191008083138) do
     t.string "name", null: false
     t.integer "price", null: false
     t.text "detail", null: false
-    t.string "size", null: false
     t.integer "condition", default: 0, null: false
     t.integer "shipping_burden", null: false
-    t.string "shipping_way", null: false
     t.string "shipping_place", null: false
     t.integer "shipping_day", null: false
     t.integer "status", default: 0, null: false
