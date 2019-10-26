@@ -27,5 +27,46 @@
             %br/
             = f.password_field :password_confirmation, autocomplete: "off", placeholder: "６文字以上", class: "inputField", required: true
           .deviseForm__actions
+
+          .deviseForm__field
+            %h.check_message_h 本人確認
+            %p.check_message_p 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+          .deviseForm__actions
+
+          .deviseForm__field
+            = f.label :お名前（全角）
+            %span.formRequired 必須
+            %br/
+            .name
+              = f.text_field :first_name_kanji, autocomplete: "off", placeholder:"例) 山田", class: "inputField", required: true, class:"name_set"
+              = f.text_field :last_name_kanji, autocomplete: "off", placeholder:"例) 彩", class: "inputField", required: true, class:"name_set"
+          .deviseForm__actions
+
+          .deviseForm__field
+            = f.label :お名前カナ（全角）
+            %span.formRequired 必須
+            %br/
+            .name
+              = f.text_field :first_name_kana, autocomplete: "off", placeholder:"例) ヤマダ", class: "inputField", required: true, class:"name_set"
+              = f.text_field :last_name_kana, autocomplete: "off", placeholder:"例) アヤ", class: "inputField", required: true, class:"name_set"
+          .deviseForm__actions
+
+          .deviseForm__field
+            = f.label :生年月日
+            %span.formRequired 必須
+            %br/
+            .birthdate.name_set
+              .birthdate__year.birthdate__box
+                %select#id_year{name:"year"}
+              .birthdate__font 年
+              .birthdate__month.birthdate__box
+                %select#id_month{name:"month"}
+              .birthdate__font 月
+              .birthdate__day.birthdate__box
+                %select#id_day{name:"day"}
+              .birthdate__font 日
+            %p.attention_font ※本人情報は正しく入力してください。会員登録後、<br>修正するにはお時間を頂く場合があります。
+            = f.hidden_field :birth_day, id: "birth_hidden"
+          .deviseForm__actions
             = f.submit "次へ進む", class: "deviseBtn"
   =render "devise/shared/footer"

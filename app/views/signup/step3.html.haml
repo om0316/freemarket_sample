@@ -1,0 +1,87 @@
+.devise
+  = render "devise/shared/header"
+  .deviseSection
+    .inner
+      %h2.title 会員情報入力
+      .deviseForm
+        = form_for @user, url: step4_signup_index_path, method: :get, html: {class: 'new_user'} do |f| 
+          .deviseForm__field
+            = f.label :お名前（全角）
+            %span.formRequired 必須
+            %br/
+            .name_set
+              = f.text_field :first_name_kanji, autocomplete: "off", placeholder:"例) 山田", class: "name", required: true
+              = f.text_field :last_name_kanji, autocomplete: "off", placeholder:"例) 彩", class: "name", required: true
+          .deviseForm__actions
+
+          .deviseForm__field
+            = f.label :お名前カナ（全角）
+            %span.formRequired 必須
+            %br/
+            .name_set
+              = f.text_field :first_name_kana, autocomplete: "off", placeholder:"例) ヤマダ", class: "name", required: true
+              = f.text_field :last_name_kana, autocomplete: "off", placeholder:"例) アヤ", class: "name", required: true
+          .deviseForm__actions
+
+          .deviseForm__field
+            = f.label :生年月日
+            %span.formRequired 必須
+            %br/
+            .birthdate.name_set
+              .birthdate__year.birthdate__box
+                %select#id_year{name:"year",required: true}
+              .birthdate__font 年
+              .birthdate__month.birthdate__box
+                %select#id_month{name:"month",required: true}
+              .birthdate__font 月
+              .birthdate__day.birthdate__box
+                %select#id_day{name:"day",required: true}
+              .birthdate__font 日
+            %p.attention_font ※本人情報は正しく入力してください。会員登録後、<br>修正するにはお時間を頂く場合があります。
+            = f.hidden_field :birth_day, id: "birth_hidden"
+          .deviseForm__actions
+
+          .deviseForm__field
+            = f.label :郵便番号
+            %span.formRequired 必須
+            %br/
+            = f.text_field :postal_code, autocomplete: "off", autocomplete: "postal-code", placeholder: "例）123-456", class: "inputField", required: true
+
+          .deviseForm__field
+            = f.label :都道府県
+            %span.formRequired 必須
+            %br/
+            .address-level
+              %select#address-level{name:"prefectures",required: true}
+              = f.hidden_field :prefectures, id: "prefecture_hidden"
+
+          .deviseForm__field
+            = f.label :市区町村
+            %span.formRequired 必須
+            %br/
+            = f.text_field :city, autocomplete: "off", placeholder: "例）横浜市緑区", class: "inputField", required: true
+          .deviseForm__actions
+
+          .deviseForm__field
+            = f.label :番地
+            %span.formRequired 必須
+            %br/
+            = f.text_field :address, autocomplete: "off", placeholder: "例）青山1-1-1", class: "inputField", required: true
+          .deviseForm__actions
+
+          .deviseForm__field
+            = f.label :建物名
+            %span.formRequired 任意
+            %br/
+            = f.text_field :building, autocomplete: "off", placeholder: "例）柳ビル103", class: "inputField"
+          .deviseForm__actions
+
+          .deviseForm__field
+            = f.label :電話
+            %span.formRequired 任意
+            %br/
+            = f.text_field :telephone, autocomplete: "off", placeholder: "例）09012345678", class: "inputField"
+          .deviseForm__actions
+
+            = f.submit "次へ進む", class: "deviseBtn"
+      =render "devise/shared/footer"
