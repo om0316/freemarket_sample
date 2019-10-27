@@ -2,8 +2,10 @@
   = render "devise/shared/header"
   .deviseSection
     .inner
-      %h2.title 登録完了
-      %p.check_message_p ありがとうございました。会員登録が完了しました。
-  = form_tag(root_path, method: :get) do 
-    %input{type: "submit", value:"メルカリをはじめる", class: "deviseBtn"}
-  =render "devise/shared/footer"
+      .deviseForm
+        %h2.title 登録完了
+        %p.check_message_p ありがとうございました。会員登録が完了しました。
+        .deviseForm__actions
+          = form_tag(root_path, method: :get) do 
+            %input{type: "submit", value:"メルカリをはじめる", class: "deviseBtn"}
+        =render "devise/shared/footer"

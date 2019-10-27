@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191008083138) do
+ActiveRecord::Schema.define(version: 20191027073025) do
 
   create_table "cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "customer_id"
@@ -24,8 +24,10 @@ ActiveRecord::Schema.define(version: 20191008083138) do
     t.string "name", null: false
     t.integer "price", null: false
     t.text "detail", null: false
+    t.string "size", null: false
     t.integer "condition", default: 0, null: false
     t.integer "shipping_burden", null: false
+    t.string "shipping_way", null: false
     t.string "shipping_place", null: false
     t.integer "shipping_day", null: false
     t.integer "status", default: 0, null: false
@@ -34,6 +36,15 @@ ActiveRecord::Schema.define(version: 20191008083138) do
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_items_on_name"
     t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "sns_credentials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
   end
 
   create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -69,4 +80,5 @@ ActiveRecord::Schema.define(version: 20191008083138) do
 
   add_foreign_key "cards", "users"
   add_foreign_key "items", "users"
+  add_foreign_key "sns_credentials", "users"
 end

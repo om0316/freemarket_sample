@@ -38,29 +38,54 @@ class SignupController < ApplicationController
 
   def done
 
-    @user = User.new(
-      nickname: session[:nickname],
-      email: session[:email],
-      password: session[:password],
-      password_confirmation: session[:password_confirmation],
-      first_name_kanji: session[:first_name_kanji],
-      last_name_kanji: session[:last_name_kanji],
-      first_name_kana:session[:first_name_kana],
-      last_name_kana: session[:last_name_kana],
-      birth_day: session[:birth_day],
-      postal_code: session[:postal_code],
-      prefectures: session[:prefectures],
-      city: session[:city],
-      address: session[:address],
-      building: session[:building],
-      telephone: session[:telephone]
-    )
-
-    if @user.save 
-      Card.create(customer_id: card_params[:customer_id],user_id: @user.id)
-      sign_in User.find(@user.id) unless user_signed_in?
-      redirect_to done_signup_index_path
+    if session[:sns].present?
+      password = Devise.friendly_token
+      @user = User.new(
+        nickname: session[:nickname],
+        email: session[:email],
+        password: password,
+        password_confirmation: password,
+        first_name_kanji: session[:first_name_kanji],
+        last_name_kanji: session[:last_name_kanji],
+        first_name_kana:session[:first_name_kana],
+        last_name_kana: session[:last_name_kana],
+        birth_day: session[:birth_day],
+        postal_code: session[:postal_code],
+        prefectures: session[:prefectures],
+        city: session[:city],
+        address: session[:address],
+        building: session[:building],
+        telephone: session[:telephone]
+      )
+      if @user.save 
+        Card.create(customer_id: card_params[:customer_id],user_id: @user.id)
+        sns = SnsCredential.create(user_id: @user.id,uid: session[:sns]["uid"], provider: session[:sns]["provider"])
+        sign_in User.find(@user.id) unless user_signed_in?
+        redirect_to done_signup_index_path
+      end
     else
+      @user = User.new(
+        nickname: session[:nickname],
+        email: session[:email],
+        password: session[:password],
+        password_confirmation: session[:password_confirmation],
+        first_name_kanji: session[:first_name_kanji],
+        last_name_kanji: session[:last_name_kanji],
+        first_name_kana:session[:first_name_kana],
+        last_name_kana: session[:last_name_kana],
+        birth_day: session[:birth_day],
+        postal_code: session[:postal_code],
+        prefectures: session[:prefectures],
+        city: session[:city],
+        address: session[:address],
+        building: session[:building],
+        telephone: session[:telephone]
+      )
+      if @user.save 
+        Card.create(customer_id: card_params[:customer_id],user_id: @user.id)
+        sign_in User.find(@user.id) unless user_signed_in?
+        redirect_to done_signup_index_path
+      end
     end
     
   end
