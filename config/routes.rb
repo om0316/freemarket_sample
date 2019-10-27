@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root to: "items#index"
-  devise_for :users
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: 'users/registrations'
+  }
   
   resources :users, only: [:show] do
     member do
@@ -16,6 +19,7 @@ Rails.application.routes.draw do
 
   resources :signup do
     collection do
+      get 'sns'
       get 'step1'
       get 'step2'
       get 'step3'
