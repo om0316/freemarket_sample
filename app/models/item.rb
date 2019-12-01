@@ -1,6 +1,10 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
+  belongs_to :category
+  belongs_to :brand
+  has_many :images
+  accepts_nested_attributes_for :images, allow_destroy: true
 
   enum status:{"新品/未使用": 0,"未使用に近い": 1,"目立った傷や汚れなし": 2,"やや傷や汚れあり": 3,"傷や汚れあり": 4,"状態が悪い": 5}
   enum shipping_burden:{"送料込み（出品者負担）": 0,"着払い（購入者負担）": 1}

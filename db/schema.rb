@@ -28,11 +28,12 @@ ActiveRecord::Schema.define(version: 20191028091617) do
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "neme", null: false
-    t.integer "parent_id"
+    t.string "name", null: false
+    t.string "ancestry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["neme"], name: "index_categories_on_neme"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+    t.index ["name"], name: "index_categories_on_name"
   end
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

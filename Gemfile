@@ -71,3 +71,6 @@ gem "recaptcha", require: "recaptcha/rails"
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'active_hash'
+gem 'ancestry'
+gem 'carrierwave'
+gem 'mini_magick'
