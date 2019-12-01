@@ -99,17 +99,19 @@
               font-size: 14px;
               background-color: $hexWhite;
               border: 0.5px dashed #ccc;
-              display: block;
+              //display: block;
+              display:flex;
               min-height: 184px;
               text-align: center;
               line-height: 184px;
               @include clearfix();
               position: relative;
               .uploadInfo {
-                position: absolute;
-                top: -40%;
-                left: 30%;
+                //position: absolute;
+                //width: 100%;
+                height: 100%;
                 font-weight: bold;
+                flex-grow: 1;
                 p {
                   height: 20px;
                 }
@@ -680,5 +682,46 @@
 }
 .slick-next {
   right: -40px;
+}
+
+.up_label{
+  width: 100%;
+  height: 100%;
+}
+
+.js-file_group{
+  width: 100%;
+  height: 100%;
+}
+
+.image-box{
+  // position: relative;
+  display:flex;
+  width: 100%;
+  height: 100%;
+  top: -225px;
+}
+
+.previews{
+  display: flex;
+  height: 100%;
+}
+
+.item-image {
+  width: 110px;
+}
+
+.btn_wrapper {
+  display: flex;
+  position: absolute;
+  top: 50px;
+  width: 110px;
+}
+.js-remove{
+  width: 65px;
+}
+
+.js-file{
+ display: none;
 }
 //end
